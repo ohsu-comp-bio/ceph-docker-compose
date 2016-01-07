@@ -1,0 +1,9 @@
+ceph:
+  container_name: ceph
+  image: ceph/demo
+  net: host
+  environment:
+    MON_IP:
+    CEPH_NETWORK:
+  ports:
+    - 80:80
