@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+exec 2>&1
+
+: ${CLUSTER:=ceph}
+
+CEPH_OPTS="--cluster ${CLUSTER}"
+
+# ensure RGW is running
+sv start ceph-rgw || exit 1
+
+exec ceph-rest-api ${CEPH_OPTS} -n client.admin

@@ -1,0 +1,3 @@
+#!/bin/bash
+mkdir -p /mnt/ceph
+echo "id=admin  /mnt/ceph  fuse.ceph defaults 0 0" >> /etc/fstab

@@ -1,6 +1,6 @@
 ceph:
   container_name: ceph
-  image: ceph/demo
+  build: ceph
   net: host
   environment:
     MON_IP:

@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+exec 2>&1
+
+: ${CLUSTER:=ceph}
+
+CEPH_OPTS="--cluster ${CLUSTER}"
+
+# ensure API is running
+sv start ceph-api || exit 1
+
+# create admin user
+radosgw-admin user create --uid="admin" --display-name="Admin User"
+
+exec ceph ${CEPH_OPTS} -w
