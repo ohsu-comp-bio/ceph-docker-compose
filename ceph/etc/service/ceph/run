@@ -10,6 +10,11 @@ CEPH_OPTS="--cluster ${CLUSTER}"
 sv start ceph-api || exit 1
 
 # create admin user
-radosgw-admin user create --uid="admin" --display-name="Admin User"
+radosgw-admin user create \
+  --uid="admin" \
+  --display-name="Admin User" \
+  --caps="users=*" \
+  --access-key="ACCESS_KEY" \
+  --secret="SECRET_KEY"
 
 exec ceph ${CEPH_OPTS} -w
